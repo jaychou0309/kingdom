@@ -102,7 +102,7 @@ canvas{display:block;position:fixed;top:0;left:0}
   <button class="sb no" id="b-a" onclick="buy('archer')"><span class="si">🏹</span>弓手<br>15🥩+8🌲</button>
   <button class="sb no" id="b-k" onclick="buy('knight')"><span class="si">🛡️</span>騎士<br>35🌲+15🥩</button>
   <button class="sb no" id="b-m" onclick="buy('mage')"><span class="si">🔮</span>法師<br>40🥩+20🌲</button>
-  <button class="sb no" id="b-w" onclick="buy('worker')"><span class="si">⛏️</span>農夫<br>8🌲</button>
+  <button class="sb no" id="b-w" onclick="buy('worker')"><span class="si">⛏️</span>農夫<br>5🌲</button>
   <button class="sb no" id="b-r" onclick="buy('repair')"><span class="si">🔧</span>修城<br>20🥩+10🌲</button>
 </div>
 
@@ -135,7 +135,7 @@ function initGame(){
     units:[],enemies:[],projs:[],particles:[],
     floats:[],// floating damage numbers
     resNodes:spawnResNodes(cx,cy),
-    wood:30,meat:20,
+    wood:80,meat:60,
     frame:0,score:0,startTime:Date.now(),
     spawnTimer:0,spawnInterval:180,over:false,
     shake:0,shakeX:0,shakeY:0,
@@ -147,11 +147,11 @@ function initGame(){
 
 function spawnResNodes(cx,cy){
   const nodes=[];
-  for(let i=0;i<14;i++){
+  for(let i=0;i<20;i++){
     let x,y,tries=0;
     do{x=80+Math.random()*(W-160);y=80+Math.random()*(H-160);tries++;}
     while(Math.hypot(x-cx,y-cy)<170&&tries<40);
-    nodes.push({x,y,type:Math.random()<.55?'wood':'meat',hp:4,maxHp:4,respawn:0,worker:null});
+    nodes.push({x,y,type:Math.random()<.55?'wood':'meat',hp:6,maxHp:6,respawn:0,worker:null});
   }
   return nodes;
 }
@@ -619,7 +619,7 @@ const UNIT_DEF={
   archer:{hp:70,spd:1.6,dmg:12,range:160,atkRate:45,cost:{wood:8,meat:15},label:'弓手'},
   knight:{hp:350,spd:1.0,dmg:22,range:45,atkRate:75,cost:{wood:35,meat:15},label:'騎士'},
   mage:  {hp:90,spd:1.1,dmg:35,range:140,atkRate:90,cost:{wood:20,meat:40},label:'法師',aoe:55},
-  worker:{hp:50,spd:1.5,dmg:0,range:0,atkRate:0,cost:{wood:8,meat:0},label:'農夫'},
+  worker:{hp:50,spd:1.5,dmg:0,range:0,atkRate:0,cost:{wood:5,meat:0},label:'農夫'},
 };
 const ENEMY_DEF={
   goblin:{hp:60,spd:1.8,dmg:4,range:36,atkRate:40,reward:{wood:3,meat:2},xp:1},
@@ -713,6 +713,8 @@ function nearestFreeNode(u){let best=null,bd=9999;for(const n of G.resNodes){if(
 function update(){
   if(!G||G.over)return;
   G.frame++;
+  // Passive income: small trickle every 5 seconds
+  if(G.frame%300===0){G.wood+=5;G.meat+=3;spawnFloat(G.cx,G.cy-60,'+5🌲+3🥩','#ffe082');}
   
   // ── SPAWN ENEMIES ──
   G.spawnTimer++;
@@ -787,11 +789,11 @@ function update(){
         else{
           u.state='attack';u.frame++;
           if(u.atkTimer===0){
-            u.atkTimer=60;u.resTarget.hp--;
+            u.atkTimer=35;u.resTarget.hp--;
             const t=u.resTarget.type;
-            if(t==='wood')G.wood+=2;else G.meat+=2;
-            spawnFloat(u.resTarget.x,u.resTarget.y-15,t==='wood'?'+2🌲':'+2🥩','#A5D6A7');
-            if(!u.resTarget.hp){u.resTarget.respawn=600;u.resTarget.worker=null;u.resTarget=null;}
+            if(t==='wood')G.wood+=5;else G.meat+=5;
+            spawnFloat(u.resTarget.x,u.resTarget.y-15,t==='wood'?'+5🌲':'+5🥩','#A5D6A7');
+            if(!u.resTarget.hp){u.resTarget.respawn=250;u.resTarget.worker=null;u.resTarget=null;}
           }
         }
       }else{u.state='idle';u.frame++;}
