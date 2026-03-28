@@ -59,27 +59,27 @@ canvas{display:block;position:fixed;top:0;left:0}
     <div style="font-size:1.4rem;font-weight:900;color:#ff6d00;text-align:center;margin-bottom:12px">📖 遊戲說明</div>
     <div style="background:rgba(255,109,0,.1);border:1px solid rgba(255,109,0,.3);border-radius:14px;padding:12px;margin:7px 0;color:#eceff1;font-size:clamp(.76rem,2.3vw,.88rem);line-height:1.7">
       <b style="color:#ff9800">🎯 目標：</b>你的城堡在正中央！敵人從四面八方不停湧來。守住城堡！<br>
-      <b style="color:#ff9800">💡 策略：</b>殺敵掉落金幣，用金幣招募部隊。農夫自動採集地圖上的資源。<br>
+      <b style="color:#ff9800">💡 策略：</b>農夫自動採集地圖上的🌲木材和🥩肉，招募部隊用資源支付。殺敵也會掉落資源！<br>
       <b style="color:#ff9800">⚠️ 輸的條件：</b>城堡 HP 歸零！
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0">
       <div style="background:rgba(255,109,0,.07);border:1px solid rgba(255,109,0,.2);border-radius:12px;padding:9px;text-align:center">
-        <div style="font-size:1.6rem">🗡️</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">劍士 30💰</div><div style="font-size:.7rem;color:#b0bec5">近戰，自動攻擊</div>
+        <div style="font-size:1.6rem">🗡️</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">劍士 20🌲</div><div style="font-size:.7rem;color:#b0bec5">近戰，自動攻擊</div>
       </div>
       <div style="background:rgba(255,109,0,.07);border:1px solid rgba(255,109,0,.2);border-radius:12px;padding:9px;text-align:center">
-        <div style="font-size:1.6rem">🏹</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">弓手 25💰</div><div style="font-size:.7rem;color:#b0bec5">遠程，攻速快</div>
+        <div style="font-size:1.6rem">🏹</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">弓手 15🥩+8🌲</div><div style="font-size:.7rem;color:#b0bec5">遠程，攻速快</div>
       </div>
       <div style="background:rgba(255,109,0,.07);border:1px solid rgba(255,109,0,.2);border-radius:12px;padding:9px;text-align:center">
-        <div style="font-size:1.6rem">🛡️</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">騎士 60💰</div><div style="font-size:.7rem;color:#b0bec5">超厚血，保城堡</div>
+        <div style="font-size:1.6rem">🛡️</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">騎士 35🌲+15🥩</div><div style="font-size:.7rem;color:#b0bec5">超厚血，保城堡</div>
       </div>
       <div style="background:rgba(255,109,0,.07);border:1px solid rgba(255,109,0,.2);border-radius:12px;padding:9px;text-align:center">
-        <div style="font-size:1.6rem">🔮</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">法師 80💰</div><div style="font-size:.7rem;color:#b0bec5">範圍魔法傷害</div>
+        <div style="font-size:1.6rem">🔮</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">法師 40🥩+20🌲</div><div style="font-size:.7rem;color:#b0bec5">範圍魔法傷害</div>
       </div>
       <div style="background:rgba(255,109,0,.07);border:1px solid rgba(255,109,0,.2);border-radius:12px;padding:9px;text-align:center">
-        <div style="font-size:1.6rem">⛏️</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">農夫 20💰</div><div style="font-size:.7rem;color:#b0bec5">自動採木材/肉</div>
+        <div style="font-size:1.6rem">⛏️</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">農夫 8🌲</div><div style="font-size:.7rem;color:#b0bec5">自動採木材/肉</div>
       </div>
       <div style="background:rgba(255,109,0,.07);border:1px solid rgba(255,109,0,.2);border-radius:12px;padding:9px;text-align:center">
-        <div style="font-size:1.6rem">🔧</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">修城堡 40💰</div><div style="font-size:.7rem;color:#b0bec5">恢復城堡HP</div>
+        <div style="font-size:1.6rem">🔧</div><div style="font-size:.78rem;font-weight:bold;color:#ff9800">修城 10🌲+20🥩</div><div style="font-size:.7rem;color:#b0bec5">恢復城堡HP</div>
       </div>
     </div>
     <div style="background:rgba(255,109,0,.08);border:1px solid rgba(255,109,0,.25);border-radius:14px;padding:12px;color:#eceff1;font-size:clamp(.74rem,2.2vw,.86rem);line-height:1.7">
@@ -93,17 +93,17 @@ canvas{display:block;position:fixed;top:0;left:0}
 
 <!-- HUD -->
 <div id="hud" style="display:none">
-  <div class="hi">💰<span id="hg">0</span></div>
+  
   <div id="hmid"></div>
   <div class="hi">🌲<span id="hw">0</span>&nbsp;🥩<span id="hm">0</span></div>
 </div>
 <div id="shop" style="display:none">
-  <button class="sb no" id="b-s" onclick="buy('sword')"><span class="si">🗡️</span>劍士<br>30💰</button>
-  <button class="sb no" id="b-a" onclick="buy('archer')"><span class="si">🏹</span>弓手<br>25💰</button>
-  <button class="sb no" id="b-k" onclick="buy('knight')"><span class="si">🛡️</span>騎士<br>60💰</button>
-  <button class="sb no" id="b-m" onclick="buy('mage')"><span class="si">🔮</span>法師<br>80💰</button>
-  <button class="sb no" id="b-w" onclick="buy('worker')"><span class="si">⛏️</span>農夫<br>20💰</button>
-  <button class="sb no" id="b-r" onclick="buy('repair')"><span class="si">🔧</span>修城<br>40💰</button>
+  <button class="sb no" id="b-s" onclick="buy('sword')"><span class="si">🗡️</span>劍士<br>20🌲</button>
+  <button class="sb no" id="b-a" onclick="buy('archer')"><span class="si">🏹</span>弓手<br>15🥩+8🌲</button>
+  <button class="sb no" id="b-k" onclick="buy('knight')"><span class="si">🛡️</span>騎士<br>35🌲+15🥩</button>
+  <button class="sb no" id="b-m" onclick="buy('mage')"><span class="si">🔮</span>法師<br>40🥩+20🌲</button>
+  <button class="sb no" id="b-w" onclick="buy('worker')"><span class="si">⛏️</span>農夫<br>8🌲</button>
+  <button class="sb no" id="b-r" onclick="buy('repair')"><span class="si">🔧</span>修城<br>20🥩+10🌲</button>
 </div>
 
 <!-- GAME OVER -->
@@ -135,7 +135,7 @@ function initGame(){
     units:[],enemies:[],projs:[],particles:[],
     floats:[],// floating damage numbers
     resNodes:spawnResNodes(cx,cy),
-    gold:50,wood:0,meat:0,
+    wood:30,meat:20,
     frame:0,score:0,startTime:Date.now(),
     spawnTimer:0,spawnInterval:180,over:false,
     shake:0,shakeX:0,shakeY:0,
@@ -615,17 +615,17 @@ const DRAW_FN={
 //  UNIT DEFINITIONS
 // ═══════════════════════════════
 const UNIT_DEF={
-  sword: {hp:120,spd:1.4,dmg:15,range:40,atkRate:55,cost:{gold:30},label:'劍士'},
-  archer:{hp:70,spd:1.6,dmg:12,range:160,atkRate:45,cost:{gold:25},label:'弓手'},
-  knight:{hp:350,spd:1.0,dmg:22,range:45,atkRate:75,cost:{gold:60},label:'騎士'},
-  mage:  {hp:90,spd:1.1,dmg:35,range:140,atkRate:90,cost:{gold:80},label:'法師',aoe:55},
-  worker:{hp:50,spd:1.5,dmg:0,range:0,atkRate:0,cost:{gold:20},label:'農夫'},
+  sword: {hp:120,spd:1.4,dmg:15,range:40,atkRate:55,cost:{wood:20,meat:0},label:'劍士'},
+  archer:{hp:70,spd:1.6,dmg:12,range:160,atkRate:45,cost:{wood:8,meat:15},label:'弓手'},
+  knight:{hp:350,spd:1.0,dmg:22,range:45,atkRate:75,cost:{wood:35,meat:15},label:'騎士'},
+  mage:  {hp:90,spd:1.1,dmg:35,range:140,atkRate:90,cost:{wood:20,meat:40},label:'法師',aoe:55},
+  worker:{hp:50,spd:1.5,dmg:0,range:0,atkRate:0,cost:{wood:8,meat:0},label:'農夫'},
 };
 const ENEMY_DEF={
-  goblin:{hp:60,spd:1.8,dmg:4,range:36,atkRate:40,reward:{gold:4},xp:1},
-  orc:   {hp:200,spd:1.1,dmg:12,range:42,atkRate:60,reward:{gold:10},xp:3},
-  troll: {hp:600,spd:.65,dmg:28,range:50,atkRate:90,reward:{gold:22},xp:7},
-  dragon:{hp:2000,spd:.5,dmg:60,range:120,atkRate:120,reward:{gold:80},xp:20,boss:true},
+  goblin:{hp:60,spd:1.8,dmg:4,range:36,atkRate:40,reward:{wood:1,meat:0},xp:1},
+  orc:   {hp:200,spd:1.1,dmg:12,range:42,atkRate:60,reward:{wood:2,meat:2},xp:3},
+  troll: {hp:600,spd:.65,dmg:28,range:50,atkRate:90,reward:{wood:4,meat:4},xp:7},
+  dragon:{hp:2000,spd:.5,dmg:60,range:120,atkRate:120,reward:{wood:15,meat:15},xp:20,boss:true},
 };
 
 // ═══════════════════════════════
@@ -726,8 +726,10 @@ function update(){
     if(e.hp<=0){
       spawnParticles(e.x,e.y,e.boss?'#FF6D00':'#ef9a9a',e.boss?16:8,e.boss?3.5:2.5);
       if(e.boss)spawnParticles(e.x,e.y,'#FFC107',20,4);
-      G.gold+=e.reward.gold;G.score+=e.reward.gold;
-      spawnFloat(e.x,e.y-20,`+${e.reward.gold}💰`,'#FFC107');
+      G.wood+=e.reward.wood;G.meat+=e.reward.meat;G.score+=(e.reward.wood+e.reward.meat);
+      const rw=e.reward.wood,rm=e.reward.meat;
+      if(rw)spawnFloat(e.x,e.y-20,`+${rw}🌲`,'#A5D6A7');
+      if(rm)spawnFloat(e.x,e.y-30,`+${rm}🥩`,'#F48FB1');
       G.enemies.splice(i,1);continue;
     }
     e.frame++;if(e.hitFlash>0)e.hitFlash--;
@@ -935,32 +937,33 @@ function render(){
 //  HUD & SHOP
 // ═══════════════════════════════
 function updateHUD(){
-  document.getElementById('hg').textContent=G.gold;
+  
   document.getElementById('hw').textContent=G.wood;
   document.getElementById('hm').textContent=G.meat;
   const secs=Math.floor((Date.now()-G.startTime)/1000);
   const mins=Math.floor(secs/60),s=secs%60;
-  document.getElementById('hmid').textContent=`⏱️ ${mins}:${String(s).padStart(2,'0')} · 💀${G.score}`;
+  document.getElementById('hmid').textContent=`⏱️ ${mins}:${String(s).padStart(2,'0')}`;
   // shop buttons
   [['b-s','sword'],['b-a','archer'],['b-k','knight'],['b-m','mage'],['b-w','worker']].forEach(([id,t])=>{
-    const b=document.getElementById(id);const c=UNIT_DEF[t].cost.gold;
-    b.classList.toggle('can',G.gold>=c);b.classList.toggle('no',G.gold<c);
+    const b=document.getElementById(id);const c=UNIT_DEF[t].cost;
+    const can=G.wood>=c.wood&&G.meat>=c.meat;
+    b.classList.toggle('can',can);b.classList.toggle('no',!can);
   });
   const rb=document.getElementById('b-r');
-  rb.classList.toggle('can',G.gold>=40&&G.castle.hp<G.castle.maxHp);
-  rb.classList.toggle('no',G.gold<40||G.castle.hp>=G.castle.maxHp);
+  const rcan=G.wood>=10&&G.meat>=20&&G.castle.hp<G.castle.maxHp;
+  rb.classList.toggle('can',rcan);rb.classList.toggle('no',!rcan);
 }
 
 function buy(type){
   if(!G||G.over)return;
   if(type==='repair'){
-    if(G.gold<40||G.castle.hp>=G.castle.maxHp)return;
-    G.gold-=40;G.castle.hp=Math.min(G.castle.maxHp,G.castle.hp+150);
+    if(G.wood<10||G.meat<20||G.castle.hp>=G.castle.maxHp)return;
+    G.wood-=10;G.meat-=20;G.castle.hp=Math.min(G.castle.maxHp,G.castle.hp+150);
     spawnFloat(G.cx,G.cy-60,'+150 HP ❤️','#4CAF50');return;
   }
   const def=UNIT_DEF[type];if(!def)return;
-  if(G.gold<def.cost.gold)return;
-  G.gold-=def.cost.gold;
+  if(G.wood<def.cost.wood||G.meat<def.cost.meat)return;
+  G.wood-=def.cost.wood;G.meat-=def.cost.meat;
   spawnUnit(type);
   spawnFloat(G.cx+(Math.random()-.5)*80,G.cy-60,`${def.label}出戰！`,'#90CAF9');
 }
